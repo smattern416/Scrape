@@ -11,7 +11,10 @@ router.get("/scrape", function(req, res) {
       var $ = cheerio.load(response.data);
       console.log(response.data)
       // Now, we grab every h2 within an article tag, and do the following:
-      $("article h2").each(function(i, element) {
+      $("div.latest-news__story").each(function(i, element) {
+
+        var title = $(element).children().find("h3").text();
+        var link = $(element).find("a").attr("href");
         // Save an empty result object
         var result = {};
 
